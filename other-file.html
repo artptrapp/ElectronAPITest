@@ -1,0 +1,30 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' 'unsafe-inline';" />
+</head>
+
+<body>
+    <h1>Another todo list</h1>
+    <div id="container">
+
+    </div>
+    <button id="updateList" onclick="fetchTodos()">Update list</button>
+    <a href="index.html">Navigate</a>
+</body>
+<script type="text/javascript">
+
+    async function fetchTodos() {
+        const button = document.getElementById('updateList')
+        button.innerText = 'Loading...'
+        const todos = require('./models/todos')
+        const result = await todos.getAll()
+        const container = document.getElementById('container')
+        container.innerText = result
+        button.innerText = 'Update list'
+    }
+
+</script>
+
+</html>
